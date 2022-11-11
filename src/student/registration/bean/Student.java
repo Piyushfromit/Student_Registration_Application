@@ -2,6 +2,7 @@ package student.registration.bean;
 
 public class Student {
 	
+	
 	private int roll;
 	private String name;
 	private String gender;
@@ -66,5 +67,7 @@ public class Student {
 		return "Student [roll=" + roll + ", name=" + name + ", gender=" + gender + ", email=" + email + ", password="
 				+ password + "]";
 	}
+	
+	
 
 }
