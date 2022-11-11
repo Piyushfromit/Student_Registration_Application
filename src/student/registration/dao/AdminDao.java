@@ -7,4 +7,5 @@ public interface AdminDao {
 	
 	String adminRegistration(Admin admin) throws AdminException;
 
+	Admin login(String username, String password) throws AdminException;
 }

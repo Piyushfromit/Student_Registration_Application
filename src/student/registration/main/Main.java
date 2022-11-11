@@ -22,9 +22,11 @@ public static void studentAuth() {
 		System.out.println("1. Student Login");
 		System.out.println("2. New Student Registration");
 		System.out.println("3. Show All Courses and Seats Available");
-		System.out.println("\n");
+		System.out.println();
 		System.out.println("0. Go Back");
 		System.out.println("99. Exit The Application");
+		
+	try {
 		
 		int option = sc.nextInt();
 		StudentMenu student = new StudentMenu();
@@ -36,11 +38,11 @@ public static void studentAuth() {
 		System.out.println("----------------------------------------");
 				studentAuth();
 			break;
-//		case 1 : int check = student.login();
-//		System.out.println("----------------------------------------");
-//			if(check != 0) studentActivity(check);
-//			else studentAuth();
-//			break;
+		case 1 : int check = student.login();
+		System.out.println("----------------------------------------");
+			if(check != 0) studentActivity(check);
+			else studentAuth();
+			break;
 //		case 3 : student.showAllCourse();
 //		System.out.println("----------------------------------------");
 //			studentAuth();
@@ -52,7 +54,15 @@ public static void studentAuth() {
 			System.out.println("Invalid Selection ");
 			System.out.println("----------------------------------------");
 			studentAuth();
-	}
+		}
+		
+	  }catch(Exception e) {
+			
+			System.out.println("Invalid Selection !");
+			System.out.println("----------------------------------------");
+			menu();
+		}
+	
 	}
 //*******************************************************************
 
@@ -60,7 +70,7 @@ public static void studentActivity(int roll) {
 	
 	System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
 	System.out.println("1. Update Details ");
-	System.out.println("\n\n");
+	System.out.println();
 	System.out.println("0. Go Back");
 	System.out.println("99. Exit the Application");
 	
@@ -116,10 +126,10 @@ public static void adminAuth() {
 			case 1: am.regAdmin();
 				adminAuth();
 				break;
-//			case 2: int check = am.login();
-//				if(check == 1) adminActivity();
-//				else adminAuth();
-//				break;
+			case 2: int check = am.login();
+				if(check == 1) adminActivity();
+				else adminAuth();
+				break;
 			case 99 :
 				System.out.println("Thank you for using Application");
 				break;

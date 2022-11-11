@@ -2,6 +2,7 @@ package student.registration.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -38,6 +39,43 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		return message;
+	}
+
+	@Override
+	public Admin login(String username, String password) throws AdminException {
+		// TODO Auto-generated method stub
+		
+		Admin admin = null;
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps =  conn.prepareStatement("SELECT * FROM admin WHERE ausername = ? AND apassword = ?");
+			
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int id = rs.getInt("adminid");
+				String name = rs.getString("aname");
+				String user = rs.getString("ausername");
+				String pass = rs.getString("apassword");
+				
+				admin = new Admin(id, name, user, pass);
+
+			}
+			else {
+				throw new AdminException("Authentication Error ! ");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new AdminException(e.getMessage());
+		}
+		
+		return admin;
 	}
 	
 

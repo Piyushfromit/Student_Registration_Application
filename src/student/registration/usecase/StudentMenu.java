@@ -51,6 +51,38 @@ public class StudentMenu {
 	
 // ******************************************************
 	
+	public int login() {
+		int check = 0;
+		
+        Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Your email (case sensitive)");
+		String username = sc.next();
+		
+		System.out.println("Enter Your Password (case sensitive)");
+		String password = sc.next();
+		
+		StudentDao sd = new StudentDaoImpl();
+		
+		try {
+			Student student = sd.login(username, password);
+			System.out.println("Welcome ! Your Credentials are : ");
+			System.out.println("----------------------------");
+			System.out.println(student);
+		
+			check = student.getRoll();
+			
+		} catch (StudentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
+	
+	
+	
+// ******************************************************
 
 	
 	
