@@ -186,13 +186,25 @@ public static void adminActivity() {
 				am.deleteCourse();
 				adminActivity();
 				break;
-			case 4:am.searchCourse(); adminActivity(); break;
-			case 5:am.addBatchToCourse(); adminActivity(); break;
-			case 6:am.addStudentToBatch(); adminActivity(); break;
-			case 7:am.updateSeats(); adminActivity(); break;
-//			case 8:am.allStudentInBatch(); adminActivity(); break;
-//			case 9:am.studentList(); adminActivity(); break;
-//			case 10:am.showCourse(); adminActivity(); break;
+			case 4:
+				am.searchCourse(); 
+				adminActivity(); 
+				break;
+			case 5:
+				am.addBatchToCourse(); 
+				adminActivity(); 
+				break;
+			case 6:
+				am.addStudentToBatch(); 
+				adminActivity(); 
+				break;
+			case 7:
+				am.updateSeats(); 
+				adminActivity(); 
+				break;
+			case 8:am.allStudentInBatch(); adminActivity(); break;
+			case 9:am.studentList(); adminActivity(); break;
+			case 10:am.courseList(); adminActivity(); break;
 			case 99:
 				System.out.println("Thank you for using Application");
 				break;

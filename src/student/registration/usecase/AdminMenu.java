@@ -8,6 +8,8 @@ import student.registration.bean.Admin;
 import student.registration.bean.Batch;
 import student.registration.bean.Course;
 import student.registration.bean.CourseDTO;
+import student.registration.bean.Student;
+import student.registration.bean.StudentDTO;
 import student.registration.dao.AdminDao;
 import student.registration.dao.AdminDaoImpl;
 import student.registration.exception.AdminException;
@@ -409,15 +411,73 @@ public void addStudentToBatch() {
 		System.out.println(ae.getMessage());
 		
 	}
-	
-	
-
 }
 
 
+  public void allStudentInBatch() {
+		AdminDao ad = new AdminDaoImpl();
+		
+		try {
+			
+			List<StudentDTO> students = ad.showAllStudentWithBatch();
+			
+			if(students.size() == 0) System.out.println("No Data Found");
+			else {
+				for(StudentDTO sd : students) {
+					System.out.println(sd);
+					System.out.println("----------------------------");
+				}
+			}
+			
+		}catch(AdminException ae) {
+			System.out.println(ae.getMessage());
+		}
+	}
 
 
+  
+  
+      public void studentList() {
+		
+		AdminDao ad = new AdminDaoImpl();
+		
+		try {
+			List<Student> students = ad.studentList();
+			
+			for(Student s: students) {
+				System.out.println(s);
+				System.out.println("------------------------");
+			}
+			
+			if(students.size() == 0) System.out.println("No Student to Show");
+		}catch(AdminException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+	}
 
+	
+	public void courseList() {
+		
+		AdminDao ad = new AdminDaoImpl();
+		
+		try {
+			
+			List<Course> courses =  ad.courseList();
+			for(Course c: courses) {
+				System.out.println(c);
+				System.out.println("-----------------------");
+			}
+		}catch (AdminException e) {
+			// TODO: handle exception
+			
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
 	
 
 }

@@ -71,7 +71,7 @@ public class StudentDTO {
 
 	@Override
 	public String toString() {
-		return "Student ID : "+this.roll+"\nStudent Name : "+this.sName+"\nCourse ID : "+this.cid+"\nCourse Name : "+this.cName+"\nBatch ID : "+this.bid+"\nBatch Name : "+this.bName ;
+		return "Student Roll : "+this.roll+"\nStudent Name : "+this.sName+"\nCourse ID : "+this.cid+"\nCourse Name : "+this.cName+"\nBatch ID : "+this.bid+"\nBatch Name : "+this.bName ;
 	}
 	
 	

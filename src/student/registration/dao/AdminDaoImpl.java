@@ -11,6 +11,7 @@ import student.registration.bean.Admin;
 import student.registration.bean.Batch;
 import student.registration.bean.Course;
 import student.registration.bean.CourseDTO;
+import student.registration.bean.Student;
 import student.registration.bean.StudentDTO;
 import student.registration.exception.AdminException;
 import student.registration.util.DBUtil;
@@ -375,8 +376,10 @@ public class AdminDaoImpl implements AdminDao{
 		
 	}
 
+	
+	
 	@Override
-	public List<StudentDTO> showAllStudent() throws AdminException {
+	public List<StudentDTO> showAllStudentWithBatch() throws AdminException {
 		// TODO Auto-generated method stub
 		List<StudentDTO> students = new ArrayList<>();
 		
@@ -384,7 +387,8 @@ public class AdminDaoImpl implements AdminDao{
 			
 			PreparedStatement ps = conn.prepareStatement("SELECT s.roll,s.name,c.cid,c.cname,b.batchid,b.batchname "
 					+ "FROM student s INNER JOIN batch b INNER JOIN course c INNER JOIN "
-					+ "batchofstudent bs ON c.cid = bs.cid AND b.batchid = sb.bid");
+					+ "batchofstudent bs ON c.cid = bs.courseid AND b.batchid = bs.batchid");
+			
 			ResultSet rs = ps.executeQuery();
 			
 			boolean flag = true;
@@ -395,7 +399,7 @@ public class AdminDaoImpl implements AdminDao{
 				String sName = rs.getString("name");
 				int cid = rs.getInt("cid");
 				String cName = rs.getString("cname");
-				int bid = rs.getInt("bid");
+				int bid = rs.getInt("batchid");
 				String bName = rs.getString("batchname");
 				flag = false;
 				
@@ -413,10 +417,86 @@ public class AdminDaoImpl implements AdminDao{
 			throw new AdminException(e.getMessage());
 			
 		}
+		return students;
+	}
+
+	@Override
+	public List<Student> studentList() throws AdminException {
+		// TODO Auto-generated method stub
+       List<Student> students = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps =  conn.prepareStatement("SELECT * FROM student");
+		
+			ResultSet rs = ps.executeQuery();
+			
+			boolean flag = true;
+			
+			while(rs.next()) {
+				
+				flag = false;
+				int roll = rs.getInt("roll");
+				String name = rs.getString("name");
+				String gender= rs.getString("gender");
+				String email= rs.getString("email");
+				String pass= rs.getString("password");
+				
+				Student student = new Student(roll,name,gender,email,pass);
+				
+				students.add(student);
+			}
+			
+			if(flag) throw new AdminException("No Student Data Found !");
+			
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			throw new AdminException(e.getMessage());
+		}
 		
 		return students;
 	}
 
+	
+	
+	@Override
+	public List<Course> courseList() throws AdminException {
+		// TODO Auto-generated method stub
+		List<Course> courses = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM course");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			boolean flag = true;
+			
+			while(rs.next()) {
+				flag = false;
+				
+				int cid = rs.getInt("cid");
+				String cname = rs.getString("cname");
+				int fee = rs.getInt("fee");
+				
+				Course course = new Course(cid,cname,fee);
+				
+				courses.add(course);
+			}
+			
+			if(flag) throw new AdminException("No Course Found !");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new AdminException(e.getMessage());
+		}
+			
+		return courses;
+		
+	}
+
+	
 	
 	
 	
