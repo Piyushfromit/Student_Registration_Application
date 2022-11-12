@@ -188,8 +188,8 @@ public static void adminActivity() {
 				break;
 			case 4:am.searchCourse(); adminActivity(); break;
 			case 5:am.addBatchToCourse(); adminActivity(); break;
-//			case 6:am.addStudentToBatch(); adminActivity(); break;
-//			case 7:am.updateSeats(); adminActivity(); break;
+			case 6:am.addStudentToBatch(); adminActivity(); break;
+			case 7:am.updateSeats(); adminActivity(); break;
 //			case 8:am.allStudentInBatch(); adminActivity(); break;
 //			case 9:am.studentList(); adminActivity(); break;
 //			case 10:am.showCourse(); adminActivity(); break;

@@ -11,6 +11,7 @@ import student.registration.bean.Admin;
 import student.registration.bean.Batch;
 import student.registration.bean.Course;
 import student.registration.bean.CourseDTO;
+import student.registration.bean.StudentDTO;
 import student.registration.exception.AdminException;
 import student.registration.util.DBUtil;
 
@@ -90,11 +91,11 @@ public class AdminDaoImpl implements AdminDao{
 		
 	
 		try (Connection conn = DBUtil.establishConnection()) {
-			PreparedStatement ps =  conn.prepareStatement("INSERT INTO course(cname,fee,seats) VALUES (?,?,?)");
+			PreparedStatement ps =  conn.prepareStatement("INSERT INTO course(cname,fee) VALUES (?,?)");
 		
 			ps.setString(1, course.getCname());
 			ps.setInt(2, course.getFee());
-			ps.setInt(3, course.getSeats());
+			
 	
             int res = ps.executeUpdate();
 			
@@ -255,6 +256,173 @@ public class AdminDaoImpl implements AdminDao{
 		return courses;
 	}
 
+	
+	
+	
+	@Override
+	public String addStudentToBatch(int roll, int bid, int cid) throws AdminException {
+		// TODO Auto-generated method stub
+		String message = null;
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM student WHERE roll = ?");
+			ps.setInt(1, roll);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				String studentName = rs.getString("name");
+				PreparedStatement ps2 =  conn.prepareStatement("SELECT * FROM course WHERE cid = ?");
+				ps2.setInt(1, cid);
+				
+				ResultSet rs2 = ps2.executeQuery();
+				
+				if(rs2.next()) {
+					
+					String courseName = rs2.getString("cname");
+					
+					PreparedStatement ps3 = conn.prepareStatement("SELECT batchname,seats FROM batch WHERE batchid = ? AND courseid = ?");
+					
+					ps3.setInt(1, bid);
+					ps3.setInt(2, cid);
+					
+					ResultSet rs3 = ps3.executeQuery();
+					
+					if(rs3.next()) {
+						
+						String batchName = rs3.getString("batchname");
+						int batchSeats = rs3.getInt("seats");
+						
+						if(batchSeats > 0) {
+							
+							batchSeats--;
+							PreparedStatement up = conn.prepareStatement("UPDATE batch SET seats = ? WHERE batchid = ?");
+							up.setInt(1, batchSeats);
+							up.setInt(2, bid);
+							
+							int r = up.executeUpdate();
+							
+							PreparedStatement p = conn.prepareStatement("INSERT INTO batchofstudent VALUES (?,?,?)");
+							p.setInt(1, roll);
+							p.setInt(2, cid);
+							p.setInt(3, bid);
+							
+							int res = p.executeUpdate();
+							
+							if(res > 0) {
+								
+								message = "Student "+studentName+" Added to Batch "+ batchName+" of Course "+courseName+" Successfully.";
+							
+							}
+							else {
+								throw new AdminException("Batch and Course Not Matching.");
+							}
+							
+							
+						}
+						else {
+							throw new AdminException("No Seats Available ! Add More Seats to Add more Student.");
+						}
+					}else {
+						throw new AdminException("Batch with Batch ID "+bid+" not Found !");
+					}
+
+				}else {
+					throw new AdminException("Course with course ID "+ cid + " not Found !");
+				}
+				
+			}else {
+				throw new AdminException("Student with Roll number "+ roll+ " not Found !");
+			}
+			
+		}
+		 catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new AdminException(e.getMessage());
+		}
+		
+		return message;
+	}
+
+	
+	
+	
+	@Override
+	public String updateSeatsOfBatch(int batchid, int newSeats) throws AdminException {
+
+	String message = null;
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps =  conn.prepareStatement("UPDATE batch SET seats = ? WHERE batchid = ?");
+			ps.setInt(1, newSeats);
+			ps.setInt(2, batchid);
+			
+			int res = ps.executeUpdate();
+			
+			if(res>0) message = "Batch ID : "+batchid+" is Updated with New Number of Seats : "+ newSeats+" Successfully.";
+			else throw new AdminException("Batch ID Error.");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new AdminException(e.getMessage());
+		}
+		
+		return message;
+		
+	}
+
+	@Override
+	public List<StudentDTO> showAllStudent() throws AdminException {
+		// TODO Auto-generated method stub
+		List<StudentDTO> students = new ArrayList<>();
+		
+		try(Connection conn = DBUtil.establishConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("SELECT s.roll,s.name,c.cid,c.cname,b.batchid,b.batchname "
+					+ "FROM student s INNER JOIN batch b INNER JOIN course c INNER JOIN "
+					+ "batchofstudent bs ON c.cid = bs.cid AND b.batchid = sb.bid");
+			ResultSet rs = ps.executeQuery();
+			
+			boolean flag = true;
+			
+			while(rs.next()) {
+				
+				int roll = rs.getInt("roll");
+				String sName = rs.getString("name");
+				int cid = rs.getInt("cid");
+				String cName = rs.getString("cname");
+				int bid = rs.getInt("bid");
+				String bName = rs.getString("batchname");
+				flag = false;
+				
+				
+				StudentDTO student = new StudentDTO(roll, sName, cid, cName, bid, bName);
+				students.add(student);
+				
+			}
+			
+			if(flag) throw new AdminException("No student added to Batch");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new AdminException(e.getMessage());
+			
+		}
+		
+		return students;
+	}
+
+	
+	
+	
+	
+	
+		
 }
 
 

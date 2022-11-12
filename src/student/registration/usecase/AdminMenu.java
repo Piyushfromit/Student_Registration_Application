@@ -106,25 +106,10 @@ public class AdminMenu {
 			addCourse();
 		}
 		
-        System.out.println("Totel Seats : ");
-		
-		String s;
-		int seats = 0;
-		try {
-			s = sc.next();
-			seats = Integer.parseInt(s);
-			
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			System.out.println("Try Again !");
-			addCourse();
-		}
-		
-		
-		Course course = new Course();
+        Course course = new Course();
 		course.setCname(name);
 		course.setFee(fee);
-		course.setSeats(seats);
+		
 		
 		AdminDao ad = new AdminDaoImpl();
 		
@@ -315,10 +300,124 @@ public void searchCourse() {
 	
 }
 
-
+public void addStudentToBatch() {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("       Add Student To Batch ");
+	System.out.println("      ----------------------");
+	
+	System.out.println("Enter the Student Roll Number : ");
+	String r;
+	int roll = 0;
+	
+	try {
+		r = sc.next();
+		roll = Integer.parseInt(r);
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
+		System.out.println("Try Again !");
+		addStudentToBatch();
+	}
+	
+	System.out.println("Enter Course ID : ");
+	String c;
+	int cid = 0;
+	
+	try {
+		c = sc.next();
+		cid = Integer.parseInt(c);
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
+		System.out.println("Try Again !");
+		addStudentToBatch();
+	}
+	
+	System.out.println("Enter Batch ID : ");
+	String b;
+	int bid = 0;
+	
+	try {
+		b = sc.next();
+		bid = Integer.parseInt(b);
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
+		System.out.println("Try Again !");
+		addStudentToBatch();
+	}
+	
+	AdminDao ad = new AdminDaoImpl();
+	
+	try {
+		
+		System.out.println(ad.addStudentToBatch(roll, bid, cid));
+		
+	} catch (AdminException e) {
+		// TODO: handle exception
+		System.out.println(e.getMessage());
+	} 
+}
 
 
     
+
+  public void updateSeats() {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("Enter Batch ID : ");
+	String b;
+	int batchid = 0;
+	
+	try {
+		b = sc.next();
+		batchid = Integer.parseInt(b);
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
+		System.out.println("Try Again !");
+		updateSeats();
+	}
+	
+	
+	System.out.println("Enter New Number of Seats : ");
+	String ns;
+	int newSeat = 0;
+	
+	try {
+		ns = sc.next();
+		newSeat = Integer.parseInt(ns);
+		
+	}catch(Exception e) {
+		System.out.println(e.getMessage());
+		System.out.println("Try Again !");
+		updateSeats();
+		
+	}
+	
+	AdminDao ad = new AdminDaoImpl();
+	
+	try {
+		
+		System.out.println(ad.updateSeatsOfBatch(batchid, newSeat));
+		
+	}catch(AdminException ae) {
+		
+		System.out.println(ae.getMessage());
+		
+	}
+	
+	
+
+}
+
+
+
+
+
 	
 
 }

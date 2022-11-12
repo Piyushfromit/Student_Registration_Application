@@ -9,6 +9,7 @@ import student.registration.bean.Admin;
 import student.registration.bean.Batch;
 import student.registration.bean.Course;
 import student.registration.bean.CourseDTO;
+import student.registration.bean.StudentDTO;
 import student.registration.exception.AdminException;
 
 public interface AdminDao {
@@ -26,4 +27,12 @@ public interface AdminDao {
 	String addBatchToCourse(Batch batch) throws AdminException;
 	
 	List<CourseDTO> searchCourse(int cid) throws AdminException;
+	
+	String addStudentToBatch(int roll, int bid, int cid) throws AdminException;
+
+	String updateSeatsOfBatch(int bid, int newSeats) throws AdminException;
+
+	List<StudentDTO> showAllStudent() throws AdminException;
+
+
 }
