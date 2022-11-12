@@ -112,7 +112,7 @@ public static void adminAuth() {
 		System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
 		System.out.println("1. New Admin Registration");
 		System.out.println("2. Admin Login");
-		System.out.println("\n");
+		System.out.println();
 		System.out.println("0. Go Back");
 		System.out.println("99. Exit The Application");
 		
@@ -175,19 +175,19 @@ public static void adminActivity() {
 		switch(option) {
 			case 0 : adminAuth();
 				break;
-//			case 1 : am.addCourse();
-//				adminActivity();
-//				break;
-//			case 2:
-//				am.updateFee();
-//				adminActivity();
-//				break;
-//			case 3:
-//				am.deleteCourse();
-//				adminActivity();
-//				break;
-//			case 4:am.searchCourse(); adminActivity(); break;
-//			case 5:am.addBatchToCourse(); adminActivity(); break;
+			case 1 : am.addCourse();
+				adminActivity();
+				break;
+			case 2:
+				am.updateFee();
+				adminActivity();
+				break;
+			case 3:
+				am.deleteCourse();
+				adminActivity();
+				break;
+			case 4:am.searchCourse(); adminActivity(); break;
+			case 5:am.addBatchToCourse(); adminActivity(); break;
 //			case 6:am.addStudentToBatch(); adminActivity(); break;
 //			case 7:am.updateSeats(); adminActivity(); break;
 //			case 8:am.allStudentInBatch(); adminActivity(); break;
