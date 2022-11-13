@@ -43,10 +43,10 @@ public static void studentAuth() {
 			if(check != 0) studentActivity(check);
 			else studentAuth();
 			break;
-//		case 3 : student.showAllCourse();
-//		System.out.println("----------------------------------------");
-//			studentAuth();
-//			break;
+		case 3 : student.showAllCourse();
+		System.out.println("----------------------------------------");
+			studentAuth();
+			break;
 		case 99 :
 			System.out.println("Thank you for using Application");
 			break;
@@ -84,10 +84,10 @@ public static void studentActivity(int roll) {
 		switch(option) {
 			case 0 : studentAuth();
 				break;
-//			case 1 : student.updateDetail(roll);
-//			System.out.println("----------------------------------------");
-//				studentActivity(roll);
-//				break;
+			case 1 : student.updateDetail(roll);
+			System.out.println("----------------------------------------");
+				studentActivity(roll);
+				break;
 			case 99 :
 				System.out.println("Thank you for using Application");
 				break;
