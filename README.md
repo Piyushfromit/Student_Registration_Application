@@ -54,7 +54,7 @@ It has different level of access for Student and Admin
 > Valuable feedback will be appreciated.
 > You can reach out to me via below medium.
 
-- [Email](piyushfrom@gmail.com)
+- [Email](piyushfrommasai@gmail.com)
 - [Linkedin](https://www.linkedin.com/in/piyushfromit/)
 # Contributor
 #### Mayuri Samanta
