@@ -25,8 +25,7 @@ apassword varchar(24) NOT NULL
 CREATE TABLE Course(
 cid int PRIMARY KEY auto_increment,
 cname varchar(24) NOT NULL UNIQUE,
-fee int NOT NULL,
-seats int NOT NULL
+fee int NOT NULL
 );
 
 CREATE TABLE Batch
