@@ -1,0 +1,57 @@
+mysql> create database studentregistrationsystem;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use studentregistrationsystem;
+Database changed
+mysql>
+
+
+CREATE TABLE Student(
+roll int PRIMARY KEY auto_increment,
+name varchar(16) NOT NULL,
+gender varchar(1) NOT NULL,
+email varchar(24) NOT NULL UNIQUE,
+password varchar(16) NOT NULL
+);
+
+CREATE TABLE Admin
+(
+adminid int PRIMARY KEY auto_increment,
+aname varchar(16) NOT NULL,
+ausername varchar(24) NOT NULL UNIQUE,
+apassword varchar(24) NOT NULL
+);
+
+CREATE TABLE Course(
+cid int PRIMARY KEY auto_increment,
+cname varchar(24) NOT NULL UNIQUE,
+fee int NOT NULL,
+seats int NOT NULL
+);
+
+CREATE TABLE Batch
+(
+batchid int PRIMARY KEY,
+batchname varchar(12),
+courseid int,
+seats int NOT NULL,
+FOREIGN KEY (courseid) references Course(cid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE batchofstudent(
+Studentroll int,
+courseid int,
+batchid int,
+PRIMARY KEY (Studentroll,courseid),
+FOREIGN KEY (batchid) references Batch(batchid) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (courseid) references Course(cid) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (studentroll) references Student(roll) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE student_course(
+roll int,
+cid int,
+FOREIGN KEY (cid) references Course(c_id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (roll) references Student(roll) ON DELETE CASCADE ON UPDATE CASCADE
+);
