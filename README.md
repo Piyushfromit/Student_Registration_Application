@@ -11,6 +11,8 @@ This Project works on JDBC and deployed on local server.
 
 It has different level of access for Student and Admin
 
+# 👉 [Click here](https://drive.google.com/file/d/19cj65rsSFD) to go through detail explanation of this application 
+
 ## User
 - Admin
 - Student
