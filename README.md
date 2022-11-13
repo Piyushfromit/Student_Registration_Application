@@ -36,3 +36,26 @@ It has different level of access for Student and Admin
 ## Features
 - While creating the Batch for a course, a student can be added to multiple batches considering that it is not exceeding the limit of the batch size.
 - A student can be added to multiple batches of different course but not of the same course.
+
+# Technology used 
+
+- Java
+- MySQL
+- Git & GitHub
+
+# Lessons Learned
+
+- Gain excessive knowledge on application of Java and MySQL.
+- Enjoyed the process of learning and creating the application.
+
+# Feedback
+> Valuable feedback will be appreciated.
+> You can reach out to me via below medium.
+
+- [Email](piyushfrom@gmail.com)
+- [Linkedin](https://www.linkedin.com/in/piyushfromit/)
+# Contributor
+#### Mayuri Samanta
+>[GitHub](https://github.com/piyushfromit)
+
+
