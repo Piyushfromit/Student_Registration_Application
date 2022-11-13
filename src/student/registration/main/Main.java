@@ -19,6 +19,7 @@ public class Main {
 public static void studentAuth() {
 		
 		System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
+		System.out.println("-----------------------------------------");
 		System.out.println("1. Student Login");
 		System.out.println("2. New Student Registration");
 		System.out.println("3. Show All Courses and Seats Available");
@@ -49,6 +50,7 @@ public static void studentAuth() {
 			break;
 		case 99 :
 			System.out.println("Thank you for using Application");
+			System.exit(0);
 			break;
 		default : 
 			System.out.println("Invalid Selection ");
@@ -60,6 +62,7 @@ public static void studentAuth() {
 			
 			System.out.println("Invalid Selection !");
 			System.out.println("----------------------------------------");
+			System.out.println();
 			menu();
 		}
 	
@@ -69,6 +72,7 @@ public static void studentAuth() {
 public static void studentActivity(int roll) {
 	
 	System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
+	System.out.println("-----------------------------------------");
 	System.out.println("1. Update Details ");
 	System.out.println();
 	System.out.println("0. Go Back");
@@ -90,6 +94,7 @@ public static void studentActivity(int roll) {
 				break;
 			case 99 :
 				System.out.println("Thank you for using Application");
+				System.exit(0);
 				break;
 			default : 
 				System.out.println("Invalid Selection ");
@@ -99,6 +104,7 @@ public static void studentActivity(int roll) {
 	}catch(Exception e) {
 		System.out.println("Invalid Selection !");
 		System.out.println("----------------------------------------");
+		System.out.println();
 		menu();
 	}
 }
@@ -110,6 +116,7 @@ public static void studentActivity(int roll) {
 public static void adminAuth() {
 		
 		System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
+		System.out.println("-----------------------------------------");
 		System.out.println("1. New Admin Registration");
 		System.out.println("2. Admin Login");
 		System.out.println();
@@ -132,6 +139,7 @@ public static void adminAuth() {
 				break;
 			case 99 :
 				System.out.println("Thank you for using Application");
+				System.exit(0);
 				break;
 			default : 
 				System.out.println("Invalid Selection ");
@@ -141,6 +149,7 @@ public static void adminAuth() {
 		}catch(Exception e) {
 			System.out.println("Invalid Selection !");
 			System.out.println("----------------------------------------");
+			System.out.println();
 			adminAuth();
 		}
 	}
@@ -153,7 +162,7 @@ public static void adminAuth() {
 public static void adminActivity() {
 	
 	System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
-	
+	System.out.println("-----------------------------------------");
 	System.out.println("1. Add new Course");
 	System.out.println("2. Update Fees of Course");
 	System.out.println("3. Delete Course");
@@ -164,7 +173,7 @@ public static void adminActivity() {
 	System.out.println("8. View Student in Batch");
 	System.out.println("9. View All Student List");
 	System.out.println("10. View All Course List");
-	System.out.println("\n\n");
+	System.out.println();
 	System.out.println("0. Go Back");
 	System.out.println("99. Exit The Application");
 	
@@ -207,6 +216,7 @@ public static void adminActivity() {
 			case 10:am.courseList(); adminActivity(); break;
 			case 99:
 				System.out.println("Thank you for using Application");
+				System.exit(0);
 				break;
 			default:System.out.println("Invalid Selection !");
 				adminActivity();
@@ -216,6 +226,7 @@ public static void adminActivity() {
 	}catch(Exception e) {
 		System.out.println("Invalid Exception");
 		System.out.println("----------------------------------------");
+		System.out.println();
 		adminActivity();
 	}
 	
@@ -229,6 +240,7 @@ public static void adminActivity() {
 	public static void menu() {
 		
 		System.out.println("Please Select from the Option");
+		System.out.println("------------------------------");
 		System.out.println("1. I am a Student ");
 		System.out.println("2. I am a Admin ");
 		System.out.println();
@@ -245,6 +257,7 @@ public static void adminActivity() {
 			adminAuth(); 
 		case 99:
 			System.out.println("Thank you for using Application");
+			System.exit(0);
 			break;
 		default:
 			System.out.println(" ==> Invalid Selection !");
