@@ -23,7 +23,7 @@ public class StudentDaoImpl implements StudentDao {
 		
 		
 		
-		try (Connection con = DBUtil.establishConnection();){
+		try (Connection con = DBUtil.establishConnection()){
 			
 			PreparedStatement ps1 =  con.prepareStatement("INSERT INTO student(name,gender,email,password) VALUES (?,?,?,?)");
 		
