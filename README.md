@@ -4,7 +4,7 @@
 
 This is an automated Student Registration System, A simple console base Project using JAVA and JDBC using MYSQL as Database.
 
-<!--  ![DB_Schema](https://user-images.githubusercontent.com/70420133/200182224-17fae6b9-413c-44ca-a529-49a5e22aad28.jpg) -->
+  ![DB_Schema](https://user-images.githubusercontent.com/70420133/200182224-17fae6b9-413c-44ca-a529-49a5e22aad28.jpg) 
 
 Using this schema
 This Project works on JDBC and deployed on local server.
