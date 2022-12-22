@@ -56,7 +56,7 @@ It has different level of access for Student and Admin
 
 - [Linkedin](https://www.linkedin.com/in/piyushfromit/)
 # Contributor
-#### Mayuri Samanta
+#### Piyush kumar
 >[GitHub](https://github.com/piyushfromit)
 
 https://youtu.be/HYGnVeCs0Yg    reference link for UI
